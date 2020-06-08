@@ -1,0 +1,104 @@
+#
+# Convert images to GIF animation.
+#
+# Usage (from Terminal):
+#   python j_gifmaker.py input_files output_file [duration in s]
+#
+# Examples:
+#   python j_gifmaker.py *.png output.gif 0.2
+#
+# Author:
+#   Julien Cohen-Adad
+#
+# License:
+#   MIT
+#
+# Dependences
+#   Python 3 (due to the use of numpy's tobyte() method)
+#   imageio: install with: "pip install imageio"
+#   skimage
+
+
+import glob
+import argparse
+import imageio
+import numpy as np
+from scipy.ndimage import zoom
+# from skimage.transform import rescale
+# from skimage import img_as_ubyte
+
+
+def creategif(infiles, outfile, duration, rescale_factor=1, interp=2):
+    """
+
+    :param infiles: list of image file names
+    :param outfile: output file name. Should be gif ext.
+    :param duration: in second
+    :param rescale_factor: float: Rescale factor. 1: no rescaling. 0.5: 2x downsampling.
+    :param interp: int: Interpolation order
+    :return:
+    """
+    images = []
+    for filename in infiles:
+        im = imageio.imread(filename)
+        if rescale_factor == 1:
+            imr = im
+        else:
+            for idim in range(4):
+                im2d = im[..., idim]
+                if idim == 0:
+                    # first assignment
+                    imr = zoom(im2d, rescale_factor, order=interp)[..., np.newaxis]
+                else:
+                    imr = np.concatenate((imr, zoom(im2d, rescale_factor, order=interp)[..., np.newaxis]), axis=2)
+        images.append(imr)
+    imageio.mimsave(outfile, images, 'GIF', duration=duration, subrectangles=True)
+    print("File created: "+outfile)
+
+def main():
+    extension = 'png'
+    infiles = '*.'+extension  # default input files
+    outfile = 'anim.gif'
+    duration = 0.5  # default duration (in s)
+    rescale_factor = 1
+    interp = 2
+
+    # initiate the parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--infiles", nargs='*', help="Input files. Default="+infiles)
+    parser.add_argument("-e", "--extension", type=str, help="Search all files with this extension. Default="+extension)
+    parser.add_argument("-o", "--outfile", help="Output file. Default="+outfile)
+    parser.add_argument("-d", "--duration", type=float, help="Duration in seconds. Default="+str(duration))
+    parser.add_argument("-r", "--rescale", type=float,
+                        help="Rescale factor. 1: no rescaling. 0.5: 2x downsampling. Default=".format(rescale_factor))
+    parser.add_argument("-x", "--interp", type=int, choices={0, 1, 2, 3},
+                        help="Interpolation method. 0: nearest neighbour, 1: linear, 2: spline. Default=".format(interp))
+
+    # read arguments from the command line
+    args = parser.parse_args()
+
+    # retrieve arguments
+    if args.infiles:
+        infiles = args.infiles
+    if args.outfile:
+        outfile = args.outfile
+    if args.duration:
+        duration = args.duration
+    if args.rescale:
+        rescale_factor = args.rescale
+    if args.interp:
+        interp = args.interp
+
+    # in case using default infiles or running via IDE, need to parse names into list
+    if not isinstance(infiles, list):
+        infiles = [infiles]
+    # then, check if "*" needs to be interpreted
+    if any("*" in s for s in infiles) and len(infiles) == 1:
+        infiles = glob.glob(infiles[0])
+
+    print("Input files:\n{}".format(infiles))
+    creategif(infiles, outfile, duration, rescale_factor, interp)
+
+
+if __name__ == "__main__":
+    main()
