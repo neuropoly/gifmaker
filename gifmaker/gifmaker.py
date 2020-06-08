@@ -5,6 +5,7 @@
 #   Julien Cohen-Adad
 
 
+import os
 import glob
 import argparse
 import imageio
@@ -12,7 +13,7 @@ import numpy as np
 from scipy.ndimage import zoom
 
 
-def creategif(infiles, outfile, duration, rescale_factor=1, interp=2, crop=None):
+def creategif(infiles, outfile, duration, rescale_factor=1, interp=2, crop=None, save_individual_files=False):
     """
 
     :param infiles: list of image file names
@@ -20,6 +21,8 @@ def creategif(infiles, outfile, duration, rescale_factor=1, interp=2, crop=None)
     :param duration: in second
     :param rescale_factor: float: Rescale factor. 1: no rescaling. 0.5: 2x downsampling.
     :param interp: int: Interpolation order
+    :param crop: (int, int, int, int): xmin, xmax, ymin, ymax for cropping
+    :param save_individual_files: Bool: Save individual processed images.
     :return:
     """
     images = []
@@ -41,6 +44,12 @@ def creategif(infiles, outfile, duration, rescale_factor=1, interp=2, crop=None)
                 else:
                     imr = np.concatenate((imr, zoom(im2d, rescale_factor, order=interp)[..., np.newaxis]), axis=2)
         images.append(imr)
+        if save_individual_files:
+            outfile_indiv = ''.join([os.path.splitext(outfile)[0],
+                                     '_',
+                                     os.path.splitext(filename)[0],
+                                     os.path.splitext(outfile)[1]])
+            imageio.imwrite(outfile_indiv, imr[:, :, 0])
     imageio.mimsave(outfile, images, 'GIF', duration=duration, subrectangles=True)
     print("File created: "+outfile)
 
@@ -65,6 +74,7 @@ def main():
                         help="Interpolation method. 0: nearest neighbour, 1: linear, 2: spline. Default=".format(interp))
     parser.add_argument("-c", "--crop", type=int, nargs=4,
                         help="Crop images before creating the gif. Argument orders are: xmin, xmax, ymin, ymax.")
+    parser.add_argument("-s", "--save-indiv", action='store_true', help="Save individual processed images.")
 
     # read arguments from the command line
     args = parser.parse_args()
@@ -88,10 +98,10 @@ def main():
         infiles = [infiles]
     # then, check if "*" needs to be interpreted
     if any("*" in s for s in infiles) and len(infiles) == 1:
-        infiles = glob.glob(i0nfiles[0])
+        infiles = glob.glob(infiles[0])
 
     print("Input files:\n{}".format(infiles))
-    creategif(infiles, outfile, duration, rescale_factor, interp, crop)
+    creategif(infiles, outfile, duration, rescale_factor, interp, crop, args.save_indiv)
 
 
 if __name__ == "__main__":
