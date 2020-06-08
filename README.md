@@ -1,5 +1,7 @@
 # gifmaker
 
+![Brain](/docs/brain.gif)
+
 Convert a series of images into a gif animation.
 
 ## Installation
