@@ -45,10 +45,7 @@ def creategif(infiles, outfile, duration, rescale_factor=1, interp=2, crop=None,
                     imr = np.concatenate((imr, zoom(im2d, rescale_factor, order=interp)[..., np.newaxis]), axis=2)
         images.append(imr)
         if save_individual_files:
-            outfile_indiv = ''.join([os.path.splitext(outfile)[0],
-                                     '_',
-                                     os.path.splitext(filename)[0],
-                                     os.path.splitext(outfile)[1]])
+            outfile_indiv = ''.join([os.path.splitext(outfile)[0], '_', os.path.splitext(filename)[0], '.png'])
             imageio.imwrite(outfile_indiv, imr[:, :, 0])
     imageio.mimsave(outfile, images, 'GIF', duration=duration, subrectangles=True)
     print("File created: "+outfile)
