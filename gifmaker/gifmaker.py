@@ -1,22 +1,8 @@
 #
 # Convert images to GIF animation.
 #
-# Usage (from Terminal):
-#   python j_gifmaker.py input_files output_file [duration in s]
-#
-# Examples:
-#   python j_gifmaker.py *.png output.gif 0.2
-#
 # Author:
 #   Julien Cohen-Adad
-#
-# License:
-#   MIT
-#
-# Dependences
-#   Python 3 (due to the use of numpy's tobyte() method)
-#   imageio: install with: "pip install imageio"
-#   skimage
 
 
 import glob
@@ -26,7 +12,7 @@ import numpy as np
 from scipy.ndimage import zoom
 
 
-def creategif(infiles, outfile, duration, rescale_factor=1, interp=2):
+def creategif(infiles, outfile, duration, rescale_factor=1, interp=2, crop=None):
     """
 
     :param infiles: list of image file names
@@ -39,6 +25,11 @@ def creategif(infiles, outfile, duration, rescale_factor=1, interp=2):
     images = []
     for filename in infiles:
         im = imageio.imread(filename)
+        # Image cropping
+        if crop is not None:
+            # note: x and y are swapped compared to typical image editors
+            im = im.copy()[crop[2]:crop[3], crop[0]:crop[1]]
+        # Image resampling
         if rescale_factor == 1:
             imr = im
         else:
@@ -52,6 +43,7 @@ def creategif(infiles, outfile, duration, rescale_factor=1, interp=2):
         images.append(imr)
     imageio.mimsave(outfile, images, 'GIF', duration=duration, subrectangles=True)
     print("File created: "+outfile)
+
 
 def main():
     extension = 'png'
@@ -71,6 +63,8 @@ def main():
                         help="Rescale factor. 1: no rescaling. 0.5: 2x downsampling. Default=".format(rescale_factor))
     parser.add_argument("-x", "--interp", type=int, choices={0, 1, 2, 3},
                         help="Interpolation method. 0: nearest neighbour, 1: linear, 2: spline. Default=".format(interp))
+    parser.add_argument("-c", "--crop", type=int, nargs=4,
+                        help="Crop images before creating the gif. Argument orders are: xmin, xmax, ymin, ymax.")
 
     # read arguments from the command line
     args = parser.parse_args()
@@ -86,16 +80,18 @@ def main():
         rescale_factor = args.rescale
     if args.interp:
         interp = args.interp
+    if args.crop:
+        crop = args.crop
 
     # in case using default infiles or running via IDE, need to parse names into list
     if not isinstance(infiles, list):
         infiles = [infiles]
     # then, check if "*" needs to be interpreted
     if any("*" in s for s in infiles) and len(infiles) == 1:
-        infiles = glob.glob(infiles[0])
+        infiles = glob.glob(i0nfiles[0])
 
     print("Input files:\n{}".format(infiles))
-    creategif(infiles, outfile, duration, rescale_factor, interp)
+    creategif(infiles, outfile, duration, rescale_factor, interp, crop)
 
 
 if __name__ == "__main__":
