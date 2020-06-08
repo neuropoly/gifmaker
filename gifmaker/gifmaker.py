@@ -24,8 +24,6 @@ import argparse
 import imageio
 import numpy as np
 from scipy.ndimage import zoom
-# from skimage.transform import rescale
-# from skimage import img_as_ubyte
 
 
 def creategif(infiles, outfile, duration, rescale_factor=1, interp=2):
