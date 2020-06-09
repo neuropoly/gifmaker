@@ -18,13 +18,28 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: 3.7
-    - name: Deploy docs
-      uses: mhausenblas/mkdocs-deploy-gh-pages@master
-      env:
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install mkdocs mdx_gh_links pymdown-extensions
+
+    - name: Build site
+      run: mkdocs build
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-#        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: build # The folder the action should deploy.
+        publish_dir: ./site
+#    - name: Deploy docs
+#      uses: mhausenblas/mkdocs-deploy-gh-pages@master
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+##        BRANCH: gh-pages # The branch the action should deploy to.
+#        FOLDER: build # The folder the action should deploy.
