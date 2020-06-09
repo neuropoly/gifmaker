@@ -1,6 +1,6 @@
 # gifmaker
 
-![Brain](/docs/brain.gif)
+![Brain](https://github.com/neuropoly/gifmaker/blob/master/docs/brain.gif)
 
 Convert a series of images into a gif animation.
 
