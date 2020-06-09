@@ -1,0 +1,41 @@
+site_name: gifmaker
+site_url: https://neuropoly.github.io/gifmaker/
+site_description: gifmaker documentation.
+site_author: Julien Cohen-Adad
+
+repo_url: https://github.com/neuropoly/gifmaker/
+edit_uri: ""
+
+theme:
+    name: mkdocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - django
+
+nav:
+    - Home: index.md
+    - User Guide:
+        - Installation: TODO.md
+    - About:
+        - Release Notes: about/release-notes.md
+        - Contributing: about/contributing.md
+        - License: about/license.md
+
+extra_css:
+    - css/extra.css
+
+markdown_extensions:
+    - toc:
+        permalink: 
+    - admonition
+    - def_list
+    - mdx_gh_links:
+        user: neuropoly
+        repo: gifmaker
+
+copyright: Copyright &copy; 2020 <a href="https://www.neuro.polymtl.ca/people/julien_cohenadad">Julien Cohen-Adad</a>.
+google_analytics: ['https://neuropoly.github.io/gifmaker/']
+
+plugins:
+    - search
