@@ -18,7 +18,7 @@ setup(
     license='LICENSE',
     description='Convert a series of images into a gif animation.',
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     install_requires=requirements,
     entry_points={
         'console_scripts': [
