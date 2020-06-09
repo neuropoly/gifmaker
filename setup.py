@@ -5,7 +5,7 @@ import gifmaker as gm
 with open('requirements.txt') as f:
     requirements = f.readlines()
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(
