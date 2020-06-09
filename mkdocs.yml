@@ -16,11 +16,12 @@ theme:
 nav:
     - Home: index.md
     - User Guide:
-        - Installation: TODO.md
+        - Installation: installation.md
+        - Usage: usage.md
     - About:
-        - Release Notes: about/release-notes.md
-        - Contributing: about/contributing.md
-        - License: about/license.md
+        - Release Notes: release-notes.md
+        - Contributing: contributing.md
+        - License: license.md
 
 extra_css:
     - css/extra.css

@@ -32,14 +32,9 @@ jobs:
     - name: Build site
       run: mkdocs build
 
+    # The site will be deployed in the gh-pages branch, so make sure Github Pages uses this branch (instead of master)
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         publish_dir: ./site
-#    - name: Deploy docs
-#      uses: mhausenblas/mkdocs-deploy-gh-pages@master
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-##        BRANCH: gh-pages # The branch the action should deploy to.
-#        FOLDER: build # The folder the action should deploy.
