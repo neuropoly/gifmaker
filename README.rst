@@ -1,7 +1,7 @@
 gifmaker
 ========
 
-.. image:: https://github.com/neuropoly/gifmaker/blob/master/docs/brain.gif
+.. image:: https://raw.githubusercontent.com/neuropoly/gifmaker/master/docs/brain.gif
 
 Convert a series of images into a gif animation, with the possibility to apply
 various processing on the input image (cropping, rescaling, etc.).

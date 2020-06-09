@@ -1,10 +1,6 @@
 # Release notes
 
-## 1.2
-
-Fixed description on Pypi.
-
-## 1.1
+## 1.3
 
 Moved documentation to MkDocs.
 
