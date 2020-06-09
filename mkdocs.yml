@@ -7,7 +7,7 @@ repo_url: https://github.com/neuropoly/gifmaker/
 edit_uri: ""
 
 theme:
-    name: mkdocs
+    name: readthedocs
     highlightjs: true
     hljs_languages:
         - yaml
@@ -35,7 +35,7 @@ markdown_extensions:
         repo: gifmaker
 
 copyright: Copyright &copy; 2020 <a href="https://www.neuro.polymtl.ca/people/julien_cohenadad">Julien Cohen-Adad</a>.
-google_analytics: ['https://neuropoly.github.io/gifmaker/']
+#google_analytics: ['ID', 'https://neuropoly.github.io/gifmaker/']
 
 plugins:
     - search
