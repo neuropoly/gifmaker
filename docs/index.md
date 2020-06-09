@@ -1,6 +1,7 @@
 ![Brain](brain.gif)
 
-Convert a series of images into a gif animation.
+Convert a series of images into a gif animation, with the possibility to apply 
+various processing on the input image (cropping, rescaling, etc.).
 
 # Installation
 
@@ -10,17 +11,49 @@ pip install gifmaker
 
 # Usage
 
+The examples below are based on the example images: `gifmaker/tests/images/`.
+To look at all the features, run:
+
 ```bash
-gifmaker -i IMAGE1.png IMAGE2.png
+gifmaker -h
+```
+
+## Standard usage
+
+```bash
+gifmaker -i 1.png 2.png 3.png 4.png 5.png -o myanim.gif
+```
+
+Or, using Unix regex:
+
+```bash
 gifmaker -i *.png
 ```
 
-Note: all images mush have the same size.
+!!! note
+    All images should have the same size.
+ 
+## Cropping
 
-For more features, run:
-~~~
-gifmaker -h
-~~~
+```bash
+gifmaker -i *.png -c 10 100 40 100 -o anim-crop.gif
+```
+
+## Rescaling
+
+For 2x downsampling:
+```bash
+gifmaker -i *.png -r 0.5 -o anim-ds.gif
+```
+
+You can combine processes. Example: cropping and 2x upsampling (in the same order):
+```bash
+gifmaker -i *.png -c 50 100 50 100 -r 2 -o anim-ds.gif
+```
+
+# Contributing
+
+We would welcome your contribution! 🎉
 
 # License
 
