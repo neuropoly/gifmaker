@@ -1,15 +1,18 @@
-# gifmaker
+gifmaker
+========
 
 ![Brain](brain.gif)
 
 Convert a series of images into a gif animation.
 
-## Installation
+Installation
+------------
 ~~~
 pip install -e .
 ~~~
 
-## Usage
+Usage
+-----
 ~~~
 gifmaker -i IMAGE1.png IMAGE2.png
 gifmaker -i *.png
@@ -21,3 +24,7 @@ For more features, run:
 ~~~
 gifmaker -h
 ~~~
+
+License
+-------
+.. include:: ../LICENSE
