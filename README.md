@@ -6,7 +6,7 @@ Convert a series of images into a gif animation.
 
 ## Installation
 ~~~
-pip install -e .
+pip install gifmaker
 ~~~
 
 ## Usage
