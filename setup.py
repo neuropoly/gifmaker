@@ -1,13 +1,15 @@
 from setuptools import setup, find_packages
 
+import gifmaker as gm
+
 with open('requirements.txt') as f:
     requirements = f.readlines()
 
 setup(
     name='gifmaker',
-    version='0.1',
-    author='Julien Cohen-Adad',
-    author_email='jcohen@polymtl.ca',
+    version=gm.__version__,
+    author=gm.__author__,
+    author_email=gm.__email__,
     packages=find_packages(),
     url='',
     license='LICENSE',
