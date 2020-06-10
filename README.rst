@@ -4,8 +4,8 @@ gifmaker
 .. image:: https://badge.fury.io/py/gifmaker.svg
     :target: https://badge.fury.io/py/gifmaker
 
-.. image:: https://img.shields.io/pypi/dt/ansicolortags.svg
-    :target: https://pypi.python.org/pypi/ansicolortags/
+.. image:: https://github.com/neuropoly/gifmaker/workflows/docs/badge.svg
+    :target: https://neuropoly.github.io/gifmaker/
 
 .. image:: https://img.shields.io/github/license/mashape/apistatus.svg
     :target: https://github.com/neuropoly/gifmaker/blob/master/LICENSE
