@@ -4,6 +4,12 @@ gifmaker
 .. image:: https://badge.fury.io/py/gifmaker.svg
     :target: https://badge.fury.io/py/gifmaker
 
+.. image:: https://github.com/neuropoly/gifmaker/workflows/build/badge.svg
+    :target: https://github.com/neuropoly/gifmaker/actions?query=workflow%3Abuild
+
+.. image:: https://github.com/neuropoly/gifmaker/workflows/publish/badge.svg
+    :target: https://github.com/neuropoly/gifmaker/actions?query=workflow%3Apublish
+
 .. image:: https://github.com/neuropoly/gifmaker/workflows/docs/badge.svg
     :target: https://neuropoly.github.io/gifmaker/
 
