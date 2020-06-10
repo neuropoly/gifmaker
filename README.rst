@@ -7,8 +7,8 @@ gifmaker
 .. image:: https://img.shields.io/pypi/dt/ansicolortags.svg
     :target: https://pypi.python.org/pypi/ansicolortags/
 
-.. image:: https://pypip.in/license/blackhole/badge.svg
-    :target: https://pypi.python.org/pypi/blackhole/
+.. image:: https://img.shields.io/github/license/mashape/apistatus.svg
+    :target: https://github.com/neuropoly/gifmaker/blob/master/LICENSE
 
 .. image:: https://raw.githubusercontent.com/neuropoly/gifmaker/master/docs/brain.gif
 
