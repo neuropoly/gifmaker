@@ -58,6 +58,7 @@ def main():
     duration = 0.5  # default duration (in s)
     rescale_factor = 1
     interp = 2
+    crop = None
 
     # initiate the parser
     parser = argparse.ArgumentParser()
