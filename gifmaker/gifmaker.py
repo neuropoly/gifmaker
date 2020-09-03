@@ -97,8 +97,10 @@ def main():
     # then, check if "*" needs to be interpreted
     if any("*" in s for s in infiles) and len(infiles) == 1:
         infiles = glob.glob(infiles[0])
-
+    
+    infiles.sort()
     print("Input files:\n{}".format(infiles))
+
     creategif(infiles, outfile, duration, rescale_factor, interp, crop, args.save_indiv)
 
 
