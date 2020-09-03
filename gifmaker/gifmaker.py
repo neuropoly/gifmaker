@@ -52,6 +52,7 @@ def creategif(infiles, outfile, duration, rescale_factor=1, interp=2, crop=None,
 
 
 def main():
+    os.system('pip show gifmaker | grep Version')
     extension = 'png'
     infiles = '*.'+extension  # default input files
     outfile = 'anim.gif'
