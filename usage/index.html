@@ -117,32 +117,27 @@
                 <h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h1>
 <p>The examples below are based on the example images: <code>gifmaker/tests/images/</code>.
 To look at all the features, run:</p>
-<pre><code class="bash">gifmaker -h
+<pre><code class="language-bash">gifmaker -h
 </code></pre>
-
 <h2 id="standard-usage">Standard usage<a class="headerlink" href="#standard-usage" title="Permanent link"></a></h2>
-<pre><code class="bash">gifmaker -i 1.png 2.png 3.png 4.png 5.png -o myanim.gif
+<pre><code class="language-bash">gifmaker -i 1.png 2.png 3.png 4.png 5.png -o myanim.gif
 </code></pre>
-
 <p>Or, using Unix regex:</p>
-<pre><code class="bash">gifmaker -i *.png
+<pre><code class="language-bash">gifmaker -i *.png
 </code></pre>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>All images should have the same size.</p>
 </div>
 <h2 id="cropping">Cropping<a class="headerlink" href="#cropping" title="Permanent link"></a></h2>
-<pre><code class="bash">gifmaker -i *.png -c 10 100 40 100 -o anim-crop.gif
+<pre><code class="language-bash">gifmaker -i *.png -c 10 100 40 100 -o anim-crop.gif
 </code></pre>
-
 <h2 id="rescaling">Rescaling<a class="headerlink" href="#rescaling" title="Permanent link"></a></h2>
 <p>For 2x downsampling:</p>
-<pre><code class="bash">gifmaker -i *.png -r 0.5 -o anim-ds.gif
+<pre><code class="language-bash">gifmaker -i *.png -r 0.5 -o anim-ds.gif
 </code></pre>
-
 <p>You can combine processes. Example: cropping and 2x upsampling (in the same order):</p>
-<pre><code class="bash">gifmaker -i *.png -c 50 100 50 100 -r 2 -o anim-ds.gif
+<pre><code class="language-bash">gifmaker -i *.png -c 50 100 50 100 -r 2 -o anim-ds.gif
 </code></pre>
               
             </div>
